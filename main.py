@@ -2,11 +2,13 @@ import os
 import pathlib
 
 import requests
+import telegram
 from urllib.parse import urlparse, unquote
-from dotenv import load_dotenv
 
-API_KEY = os.environ['API_KEY']
 
+API_KEY = os.environ["API_KEY"]
+TG_TOKEN = os.environ["TG_TOKEN"]
+CHAT_ID = os.environ['CHAT_ID']
 
 def fetch_spacex_last_launch():
     image_link = "https://api.spacexdata.com/v3/launches"
@@ -55,7 +57,7 @@ def nasa_image():
         "api_key": API_KEY,
         "count": 50
     }
-    response = requests.get(link_nasa, params= params)
+    response = requests.get(link_nasa, params=params)
     response.raise_for_status()
     image_nasa = response.json()
     pathlib.Path(folder).mkdir(parents=True, exist_ok=True)
@@ -99,12 +101,15 @@ def epic_nasa():
         with open(file_name, 'wb') as file:
             file.write(response.content)
 
+def telegram_bot():
+    bot = telegram.Bot(token=TG_TOKEN)
+    bot.send_message(text="Я выжил", chat_id=chat_id)
 
 def main():
-    fetch_spacex_last_launch()
-    nasa_image()
-    epic_nasa()
-
+    #fetch_spacex_last_launch()
+    #nasa_image()
+    #epic_nasa()
+    telegram_bot()
+    
 if __name__ == "__main__":
-    load_dotenv()
-    main()
+	main()
