@@ -103,7 +103,7 @@ def epic_nasa():
 
 def telegram_bot():
     bot = telegram.Bot(token=TG_TOKEN)
-    bot.send_message(text="Я выжил", chat_id=chat_id)
+    bot.send_document(chat_id=CHAT_ID, document=open('epic/epic_1b_20220503003634.png', 'rb'))
 
 def main():
     #fetch_spacex_last_launch()
