@@ -1,16 +1,18 @@
 import os
-from os import listdir
 import pathlib
 import random
+from time import sleep
+from os import listdir
 
 import requests
 import telegram
+from dotenv import load_dotenv
 from urllib.parse import urlparse, unquote
 
 
-API_KEY = os.environ["API_KEY"]
-TG_TOKEN = os.environ["TG_TOKEN"]
-CHAT_ID = os.environ['CHAT_ID']
+API_KEY = os.getenv["API_KEY"]
+TG_TOKEN = os.getenv["TG_TOKEN"]
+CHAT_ID = os.getenv['CHAT_ID']
 
 def fetch_spacex_last_launch(folders):
     image_link = "https://api.spacexdata.com/v3/launches"
@@ -110,11 +112,15 @@ def main():
         "Nasa",
         "epic"
     ]
-    #creature_folder(folders)
-    #fetch_spacex_last_launch(folders)
-    #nasa_image(folders)
-    #epic_nasa(folders)
-    telegram_bot(folders)
+    creature_folder(folders)
+    seconds_in_one_day = 86400
+    while True:
+        fetch_spacex_last_launch(folders)
+        nasa_image(folders)
+        epic_nasa(folders)
+        telegram_bot(folders)
+        sleep(seconds_in_one_day)
     
 if __name__ == "__main__":
+    load_dotenv()
 	main()
