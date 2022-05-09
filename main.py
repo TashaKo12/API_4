@@ -14,6 +14,7 @@ API_KEY = os.getenv["API_KEY"]
 TG_TOKEN = os.getenv["TG_TOKEN"]
 CHAT_ID = os.getenv['CHAT_ID']
 
+
 def fetch_spacex_last_launch(folders):
     image_link = "https://api.spacexdata.com/v3/launches"
     folder_spacex = folders[0]
@@ -100,11 +101,13 @@ def epic_nasa(folders):
         with open(file_name, 'wb') as file:
             file.write(response.content)
 
+
 def telegram_bot(folders):
     random_directory = random.choice(folders)
     random_picture = random.choice(listdir(random_directory))
     bot = telegram.Bot(token=TG_TOKEN)
     bot.send_document(chat_id=CHAT_ID, document=open(f'{random_directory}/{random_picture}', 'rb'))
+
 
 def main():
     folders = [
