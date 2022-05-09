@@ -1,0 +1,4 @@
+requests == 2.27.1
+python-talagram-bot == 13.11
+numpy == 1.22.3
+python-dotenv == 0.20.0
