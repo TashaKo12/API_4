@@ -1,8 +1,9 @@
 import os
 
 import requests
-
 from urllib.parse import urlparse, unquote
+
+import download_image
 
 def parser_links(link):
     link_parse = urlparse(link)
@@ -29,9 +30,7 @@ def nasa_image(folder, API_KEY):
         if link_image["url"]:
             link_nasa = link_image["url"]
             expansion, file_name = parser_links(link_nasa)
-            response = requests.get(link_nasa)
             file_name = f"{folder_nasa}/{file_name}{expansion}"
-            with open(file_name, 'wb') as file:
-                file.write(response.content)
+            download_image.download_image(link_nasa, file_name)
         else:
             continue

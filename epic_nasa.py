@@ -2,6 +2,9 @@ import datetime
 
 import requests
 
+import download_image
+
+
 def epic_nasa(folder, API_KEY):
     link_epic = "https://api.nasa.gov/EPIC/{}"
     params = {
@@ -23,10 +26,7 @@ def epic_nasa(folder, API_KEY):
         epic_image_date = epic_image_date.strftime('%Y/%m/%d')
         
         path = f"archive/natural/{epic_image_date}/png/{filename}.png"
-        response = requests.get(
-                   link_epic.format(path),
-                   params = params
-                   )
+        link = link_epic.format(path)
         file_name = f"{folder_nasa}/{filename}.png"
-        with open(file_name, 'wb') as file:
-            file.write(response.content)
+        download_image.download_image(link, file_name, params)
+        
