@@ -34,9 +34,6 @@ def main():
     creature_folders(folders)
     seconds_in_one_day = 86400
     while True:
-        spacex.fetch_spacex_last_launch(folder_spacex)
-        nasa.nasa_image(folder_nasa, API_KEY)
-        epic_nasa.epic_nasa(folser_epic, API_KEY)
         telegram_bot.telegram_bot(folders, TG_TOKEN, CHAT_ID)
         sleep(seconds_in_one_day)
     
