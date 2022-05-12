@@ -5,7 +5,7 @@ import requests
 import download_image
 
 
-def epic_nasa(folder, API_KEY):
+def get_epic_images_nasa(folder, API_KEY):
     link_epic = "https://api.nasa.gov/EPIC/{}"
     params = {
         "api_key": API_KEY

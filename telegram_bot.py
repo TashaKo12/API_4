@@ -4,7 +4,7 @@ import random
 import telegram
 
 
-def telegram_bot(folders, TG_TOKEN, CHAT_ID):
+def send_picture(folders, TG_TOKEN, CHAT_ID):
     random_directory = random.choice(folders)
     random_picture = random.choice(listdir(random_directory))
     bot = telegram.Bot(token=TG_TOKEN)

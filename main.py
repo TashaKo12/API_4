@@ -35,7 +35,8 @@ def main():
     creature_folders(folders)
     seconds_in_one_day = 86400
     while True:
-        telegram_bot.telegram_bot(folders, TG_TOKEN, CHAT_ID)
+
+        telegram_bot.send_picture(folders, TG_TOKEN, CHAT_ID)
         sleep(seconds_in_one_day)
     
 if __name__ == "__main__":
