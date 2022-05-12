@@ -26,7 +26,7 @@ def nasa_image(folder, API_KEY):
     response.raise_for_status()
     image_nasa = response.json()
     for link_image in image_nasa:
-        if len(link_image["url"]):
+        if link_image["url"]:
             link_nasa = link_image["url"]
             expansion, file_name = parser_links(link_nasa)
             response = requests.get(link_nasa)

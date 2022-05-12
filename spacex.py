@@ -11,9 +11,8 @@ def fetch_spacex_last_launch(folder):
     try:
         while len(launches):
             launch = launches.pop()
-            if not len(launch["links"]["flickr_images"]):
-                continue
-            image_list = launch["links"]["flickr_images"]
+            if launch["links"]["flickr_images"]:
+                image_list = launch["links"]["flickr_images"]
         for number, link in enumerate(image_list):
             file_name = f"{folder_spacex}/spacex{number}.jpg"
             link_image = requests.get(link)
