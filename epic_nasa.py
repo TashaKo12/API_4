@@ -17,11 +17,11 @@ def epic_nasa(folder, API_KEY):
                )
     
     response.raise_for_status()
-    image_link = response.json()
+    images_epic_date = response.json()
     
-    for image in image_link:
-        filename = image["image"]
-        epic_image_date = image["date"]
+    for image_epic_date in images_epic_date:
+        filename = image_epic_date["image"]
+        epic_image_date = image_epic_date["date"]
         epic_image_date = datetime.datetime.strptime(epic_image_date, '%Y-%m-%d  %H:%M:%S')
         epic_image_date = epic_image_date.strftime('%Y/%m/%d')
         
