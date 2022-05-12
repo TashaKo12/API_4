@@ -17,9 +17,10 @@ def parser_links(link):
 def nasa_image(folder, API_KEY):
     link_nasa = "https://api.nasa.gov/planetary/apod"
     folder_nasa = folder
+    count_link = 50
     params = {
         "api_key": API_KEY,
-        "count": 50
+        "count": count_link
     }
     response = requests.get(link_nasa, params=params)
     response.raise_for_status()
