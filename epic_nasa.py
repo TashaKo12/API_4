@@ -1,3 +1,5 @@
+import datetime
+
 import requests
 
 def epic_nasa(folder, API_KEY):
@@ -16,7 +18,10 @@ def epic_nasa(folder, API_KEY):
     
     for image in image_link:
         filename = image["image"]
-        epic_image_date = image["date"][:10].replace("-", "/")
+        epic_image_date = image["date"]
+        epic_image_date = datetime.datetime.strptime(epic_image_date, '%Y-%m-%d  %H:%M:%S')
+        epic_image_date = epic_image_date.strftime('%Y/%m/%d')
+        
         path = f"archive/natural/{epic_image_date}/png/{filename}.png"
         response = requests.get(
                    link_epic.format(path),
