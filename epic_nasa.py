@@ -5,7 +5,7 @@ def epic_nasa(folder, API_KEY):
     params = {
         "api_key": API_KEY
     }
-    folder = folder
+    folder_nasa = folder
     response = requests.get(
                link_epic.format("api/natural/image"),
                params = params
@@ -22,6 +22,6 @@ def epic_nasa(folder, API_KEY):
                    link_epic.format(path),
                    params = params
                    )
-        file_name = f"{folder}/{filename}.png"
+        file_name = f"{folder_nasa}/{filename}.png"
         with open(file_name, 'wb') as file:
             file.write(response.content)

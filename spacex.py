@@ -7,10 +7,10 @@ def fetch_spacex_last_launch(folder):
 
     response = requests.get(image_link)
     response.raise_for_status()
-    images = response.json()
+    launches = response.json()
     try:
-        while len(images):
-            launch = images.pop()
+        while len(launches):
+            launch = launches.pop()
             if not len(launch["links"]["flickr_images"]):
                 continue
             image_list = launch["links"]["flickr_images"]
