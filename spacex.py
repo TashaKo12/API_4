@@ -14,8 +14,8 @@ def fetch_spacex_last_launch(folder):
             if not len(launch["links"]["flickr_images"]):
                 continue
             image_list = launch["links"]["flickr_images"]
-        for numder, link in enumerate(image_list):
-            file_name = f"{folder_spacex}/spacex{numder}.jpg"
+        for number, link in enumerate(image_list):
+            file_name = f"{folder_spacex}/spacex{number}.jpg"
             link_image = requests.get(link)
             with open(file_name, 'wb') as file:
                 file.write(link_image.content)
