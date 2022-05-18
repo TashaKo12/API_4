@@ -11,13 +11,12 @@ def parsed_links(link):
     filename_path = os.path.split(link_path)[1]
     file_extension_path = os.path.splitext(filename_path)[1]
     file_name = os.path.splitext(filename_path)[0]
-    expansion = unquote(file_extension_path)
-    return expansion, file_name
+    extension = unquote(file_extension_path)
+    return extension, file_name
 
 
-def get_images_nasa(folder, API_KEY):
+def get_images_nasa(folder_nasa, API_KEY):
     link_nasa = "https://api.nasa.gov/planetary/apod"
-    folder_nasa = folder
     count_link = 50
     params = {
         "api_key": API_KEY,
@@ -25,10 +24,10 @@ def get_images_nasa(folder, API_KEY):
     }
     response = requests.get(link_nasa, params=params)
     response.raise_for_status()
-    images_nasa_date = response.json()
-    for image_nasa_date in images_nasa_date:
-        if image_nasa_date["url"]:
-            link_nasa = image_nasa_date["url"]
-            expansion, file_name = parsed_links(link_nasa)
-            file_name = f"{folder_nasa}/{file_name}{expansion}"
-            download_image.download_image(link_nasa, file_name)
+    images_nasa_data = response.json()
+    for image_nasa_data in images_nasa_data:
+        if image_nasa_data["url"]:
+            link_nasa = image_nasa_data["url"]
+            extension, file_name = parsed_links(link_nasa)
+            file_path = f"{folder_nasa}/{file_name}{extension}"
+            download_image.download_image(link_nasa, file_path)
