@@ -32,5 +32,3 @@ def get_images_nasa(folder, API_KEY):
             expansion, file_name = parsed_links(link_nasa)
             file_name = f"{folder_nasa}/{file_name}{expansion}"
             download_image.download_image(link_nasa, file_name)
-        else:
-            continue
