@@ -5,13 +5,14 @@ from urllib.parse import urlparse, unquote
 
 import download_image
 
+
 def parsed_links(link):
-    link_parse = urlparse(link)
-    link_path = link_parse.path
-    filename_path = os.path.split(link_path)[1]
-    file_extension_path = os.path.splitext(filename_path)[1]
-    file_name = os.path.splitext(filename_path)[0]
-    extension = unquote(file_extension_path)
+    link_unquote = unquote(link)
+    link_parse =  urlparse(link_unquote)
+    path, fullname = os.path.split(link_parse.path)
+    file_extension_path = os.path.splitext(fullname)
+    file_name, extension = file_extension_path
+     
     return extension, file_name
 
 
@@ -31,3 +32,5 @@ def get_images_nasa(folder_nasa, api_key):
             extension, file_name = parsed_links(link_nasa)
             file_path = f"{folder_nasa}/{file_name}{extension}"
             download_image.download_image(link_nasa, file_path)
+
+
