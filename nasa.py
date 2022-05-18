@@ -15,11 +15,11 @@ def parsed_links(link):
     return extension, file_name
 
 
-def get_images_nasa(folder_nasa, API_KEY):
+def get_images_nasa(folder_nasa, api_key):
     link_nasa = "https://api.nasa.gov/planetary/apod"
     count_link = 50
     params = {
-        "api_key": API_KEY,
+        "api_key": api_key,
         "count": count_link
     }
     response = requests.get(link_nasa, params=params)
