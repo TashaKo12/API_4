@@ -5,12 +5,11 @@ import requests
 from download_image import download_image
 
 
-def get_epic_images_nasa(folder, api_key):
+def get_epic_images_nasa(folder_nasa, api_key):
     link_epic = "https://api.nasa.gov/EPIC/{}"
     params = {
         "api_key": api_key
     }
-    folder_nasa = folder
     response = requests.get(
                link_epic.format("api/natural/image"),
                params = params
