@@ -3,9 +3,8 @@ import requests
 import download_image
 
 
-def fetch_spacex_last_launch(folder):
+def fetch_spacex_last_launch(folder_spacex):
     image_link = "https://api.spacexdata.com/v3/launches"
-    folder_spacex = folder
 
     response = requests.get(image_link)
     response.raise_for_status()
@@ -14,6 +13,7 @@ def fetch_spacex_last_launch(folder):
         for launch in launches:
             if launch["links"]["flickr_images"]:
                 image_list = launch["links"]["flickr_images"]
+                break
         for number, link in enumerate(image_list):
             file_path = f"{folder_spacex}/spacex{number}.jpg"
             download_image.download_image(link, file_path)
