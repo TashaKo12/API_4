@@ -8,14 +8,15 @@ from dotenv import load_dotenv
 from telegram.ext import Updater
 
 import spacex
-import nasa
+from nasa import get_images_nasa
 import epic_nasa
 
 
+load_dotenv()
+
 API_KEY = os.environ["API_KEY"]
 TG_TOKEN = os.environ["TG_TOKEN"]
-CHAT_ID = os.environ['CHAT_ID']
-
+CHAT_ID = os.environ['CHAT_ID'] 
 
 def create_folders(folders):
     for folder in folders:
@@ -37,7 +38,7 @@ def send_picture(folders, TG_TOKEN, CHAT_ID):
     )
 
 def main():
-    load_dotenv()
+    
     folder_spacex = "SpaceX"
     folder_nasa = "Nasa"
     folser_epic = "epic"
@@ -49,9 +50,10 @@ def main():
     ]
 	
     create_folders(folders)
+
     seconds_in_one_day = 86400
     while True:
-
+        
         send_picture(folders, TG_TOKEN, CHAT_ID)
         sleep(seconds_in_one_day)
     
