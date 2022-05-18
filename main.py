@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import spacex
 import nasa
 import epic_nasa
-import telegram_bot
+from telegram_bot import send_picture
 
 
 API_KEY = os.environ["API_KEY"]
@@ -36,7 +36,7 @@ def main():
     seconds_in_one_day = 86400
     while True:
 
-        telegram_bot.send_picture(folders, TG_TOKEN, CHAT_ID)
+        send_picture(folders, TG_TOKEN, CHAT_ID)
         sleep(seconds_in_one_day)
     
 if __name__ == "__main__":

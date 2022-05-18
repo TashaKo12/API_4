@@ -15,7 +15,7 @@ def fetch_spacex_last_launch(folder):
             if launch["links"]["flickr_images"]:
                 image_list = launch["links"]["flickr_images"]
         for number, link in enumerate(image_list):
-            file_name = f"{folder_spacex}/spacex{number}.jpg"
-            download_image.download_image(link, file_name)
+            file_path = f"{folder_spacex}/spacex{number}.jpg"
+            download_image.download_image(link, file_path)
     except requests.exceptions.HTTPError as error:
         exit("Can't get data from server:\n{0}".format(error))

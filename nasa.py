@@ -3,7 +3,7 @@ import os
 import requests
 from urllib.parse import urlparse, unquote
 
-import download_image
+from download_image import download_image
 
 
 def extraction_extensions_names_links(link):
@@ -31,6 +31,6 @@ def get_images_nasa(folder_nasa, api_key):
             link_nasa = image_nasa_data["url"]
             extension, file_name = extraction_extensions_names_links(link_nasa)
             file_path = f"{folder_nasa}/{file_name}{extension}"
-            download_image.download_image(link_nasa, file_path)
+            download_image(link_nasa, file_path)
 
 

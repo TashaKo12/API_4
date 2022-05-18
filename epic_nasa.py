@@ -2,7 +2,7 @@ import datetime
 
 import requests
 
-import download_image
+from download_image import download_image
 
 
 def get_epic_images_nasa(folder, api_key):
@@ -28,5 +28,5 @@ def get_epic_images_nasa(folder, api_key):
         link_path = f"archive/natural/{epic_image_data}/png/{filename}.png"
         link = link_epic.format(link_path)
         file_path = f"{folder_nasa}/{filename}.png"
-        download_image.download_image(link, file_path, params)
+        download_image(link, file_path, params)
         
