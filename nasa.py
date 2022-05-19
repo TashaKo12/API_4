@@ -54,10 +54,12 @@ def get_epic_images_nasa(folder_nasa, api_key):
         epic_image_data = image_epic_data["date"]
         epic_image_data = datetime.datetime.strptime(epic_image_data, '%Y-%m-%d  %H:%M:%S')
         epic_image_data = epic_image_data.strftime('%Y/%m/%d')
-        
         link_path = f"archive/natural/{epic_image_data}/png/{filename}.png"
         link = link_epic.format(link_path)
         file_path = f"{folder_nasa}/{filename}.png"
         download_image(link, file_path, params)
 
+def main():
+    load_dotenv()
 
+    API_KEY = ["API_KEY"]

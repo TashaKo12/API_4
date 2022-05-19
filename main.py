@@ -8,14 +8,6 @@ from dotenv import load_dotenv
 from telegram.ext import Updater
 
 
-
-
-load_dotenv()
-
-API_KEY = os.environ["API_KEY"]
-TG_TOKEN = os.environ["TG_TOKEN"]
-CHAT_ID = os.environ['CHAT_ID'] 
-
 def create_folders(folders):
     for folder in folders:
         pathlib.Path(folder).mkdir(parents=True, exist_ok=True) 
@@ -37,14 +29,20 @@ def send_picture(folders, TG_TOKEN, CHAT_ID):
 
 def main():
     
-    folder_spacex = "SpaceX"
-    folder_nasa = "Nasa"
-    folser_epic = "epic"
+    load_dotenv()
+
+    API_KEY = ["API_KEY"]
+    TG_TOKEN = os.environ["TG_TOKEN"]
+    CHAT_ID = os.environ['CHAT_ID']
     
+    FOLDER_SPACEX = os.environ["FOLDER_SPACEX"]
+    FOLDER_NASA = os.environ["FOLDER_NASA"]
+    FOLDER_EPIC = os.environ["FOLDER_EPIC"]
+
     folders = [
-        folder_nasa,
-        folder_spacex,
-        folser_epic
+        FOLDER_NASA,
+        FOLDER_SPACEX,
+        FOLDER_EPIC
     ]
 	
     create_folders(folders)
