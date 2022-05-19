@@ -7,9 +7,7 @@ from os import listdir
 from dotenv import load_dotenv
 from telegram.ext import Updater
 
-import spacex
-from nasa import get_images_nasa
-import epic_nasa
+
 
 
 load_dotenv()
