@@ -4,6 +4,7 @@ import datetime
 import requests
 from urllib.parse import urlparse, unquote
 
+from dotenv import load_dotenv
 from download_image import download_image
 
 
@@ -63,3 +64,4 @@ def main():
     load_dotenv()
 
     API_KEY = ["API_KEY"]
+    

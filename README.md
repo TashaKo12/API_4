@@ -30,9 +30,15 @@
 Пример содержания файла `.env`:
 
 ```python
+
 API_KEY = "nasa-token"
 TG_TOKEN = "bot-token"
 CHAT_ID = "@chat_id"
+
+FOLDER_SPACEX = "SpaceX"
+FOLDER_NASA = "Nasa"
+FOLDER_EPIC = "Epic"
+
 ```
 
 Получить токен `API_KEY` можно на сайте [NASA](https://api.nasa.gov/). 

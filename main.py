@@ -30,8 +30,7 @@ def send_picture(folders, TG_TOKEN, CHAT_ID):
 def main():
     
     load_dotenv()
-
-    API_KEY = ["API_KEY"]
+    
     TG_TOKEN = os.environ["TG_TOKEN"]
     CHAT_ID = os.environ['CHAT_ID']
     
