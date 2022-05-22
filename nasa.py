@@ -1,5 +1,6 @@
 import os
 import datetime
+import pathlib
 
 import requests
 from urllib.parse import urlparse, unquote
@@ -37,7 +38,7 @@ def get_images_nasa(folder_nasa, api_key):
             download_image(link_nasa, file_path)
 
 
-def get_epic_images_nasa(folder_nasa, api_key):
+def get_epic_images_nasa(folder_epic, api_key):
     link_epic = "https://api.nasa.gov/EPIC/{}"
     params = {
         "api_key": api_key
@@ -57,11 +58,24 @@ def get_epic_images_nasa(folder_nasa, api_key):
         epic_image_data = epic_image_data.strftime('%Y/%m/%d')
         link_path = f"archive/natural/{epic_image_data}/png/{filename}.png"
         link = link_epic.format(link_path)
-        file_path = f"{folder_nasa}/{filename}.png"
+        file_path = f"{folder_epic}/{filename}.png"
         download_image(link, file_path, params)
+
 
 def main():
     load_dotenv()
 
-    API_KEY = ["API_KEY"]
-    
+    API_KEY = os.environ["API_KEY"]
+    FOLDER_NASA = os.environ["FOLDER_NASA"]
+    FOLDER_EPIC = os.environ["FOLDER_EPIC"]
+
+    pathlib.Path(FOLDER_NASA).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(FOLDER_EPIC).mkdir(parents=True, exist_ok=True)
+
+    get_images_nasa(FOLDER_NASA, API_KEY)
+    get_epic_images_nasa(FOLDER_EPIC, API_KEY)
+
+
+
+if __name__ == "__main__":
+	main()
