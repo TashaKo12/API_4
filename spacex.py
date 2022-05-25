@@ -30,10 +30,10 @@ def fetch_spacex_last_launch(folder_spacex):
 def main():
     load_dotenv()
     
-    FOLDER_SPACEX = os.environ["FOLDER_SPACEX"]
+    folder_spacex = os.environ["FOLDER_SPACEX"]
 
-    pathlib.Path(FOLDER_SPACEX).mkdir(parents=True, exist_ok=True) 
-    fetch_spacex_last_launch(FOLDER_SPACEX)
+    pathlib.Path(folder_spacex).mkdir(parents=True, exist_ok=True) 
+    fetch_spacex_last_launch(folder_spacex)
 
 
 if __name__ == "__main__":

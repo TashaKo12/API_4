@@ -8,6 +8,14 @@ from dotenv import load_dotenv
 from telegram.ext import Updater
 
 
+TG_TOKEN = os.environ["TG_TOKEN"]
+CHAT_ID = os.environ['CHAT_ID']
+    
+FOLDER_SPACEX = os.environ["FOLDER_SPACEX"]
+FOLDER_NASA = os.environ["FOLDER_NASA"]
+FOLDER_EPIC = os.environ["FOLDER_EPIC"]
+
+
 def random_path(folders):
     random_directory = random.choice(folders)
     random_picture = random.choice(listdir(random_directory))
@@ -27,13 +35,7 @@ def main():
     
     load_dotenv()
     
-    TG_TOKEN = os.environ["TG_TOKEN"]
-    CHAT_ID = os.environ['CHAT_ID']
     
-    FOLDER_SPACEX = os.environ["FOLDER_SPACEX"]
-    FOLDER_NASA = os.environ["FOLDER_NASA"]
-    FOLDER_EPIC = os.environ["FOLDER_EPIC"]
-
     folders = [
         FOLDER_NASA,
         FOLDER_SPACEX,

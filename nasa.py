@@ -65,15 +65,15 @@ def get_epic_images_nasa(folder_epic, api_key):
 def main():
     load_dotenv()
 
-    API_KEY = os.environ["API_KEY"]
-    FOLDER_NASA = os.environ["FOLDER_NASA"]
-    FOLDER_EPIC = os.environ["FOLDER_EPIC"]
+    api_key = os.environ["API_KEY"]
+    folder_nasa = os.environ["FOLDER_NASA"]
+    folder_epic = os.environ["FOLDER_EPIC"]
 
-    pathlib.Path(FOLDER_NASA).mkdir(parents=True, exist_ok=True)
-    pathlib.Path(FOLDER_EPIC).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(folder_nasa).mkdir(parents=True, exist_ok=True)
+    pathlib.Path(folder_epic).mkdir(parents=True, exist_ok=True)
 
-    get_images_nasa(FOLDER_NASA, API_KEY)
-    get_epic_images_nasa(FOLDER_EPIC, API_KEY)
+    get_images_nasa(folder_nasa, api_key)
+    get_epic_images_nasa(folder_epic, api_key)
 
 
 
