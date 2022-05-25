@@ -23,14 +23,17 @@ def get_random_path(folders):
     return random_path
 
 
-def send_picture(folders, tg_token, chat_id):
+def send_picture(folders, tg_token, chat_id, random_path=None):
     random_path = get_random_path(folders)
-    updater = Updater(token=tg_token)
-    updater.bot.send_photo(
-        chat_id=chat_id,
-        photo=open(random_path, 'rb')
-    )
-
+    if random_path:
+        updater = Updater(token=tg_token)
+        updater.bot.send_photo(
+            chat_id=chat_id,
+            photo=open(random_path, 'rb')
+        )
+    else:
+        return None
+    
 
 def main():
     
