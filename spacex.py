@@ -24,7 +24,7 @@ def fetch_spacex_last_launch(folder_spacex):
             file_path = f"{folder_spacex}/spacex{number}.jpg"
             download_image(link, file_path)
     except requests.exceptions.HTTPError as error:
-        exit("Can't get data from server:\n{0}".format(error))
+        print("Can't get data from server:\n{0}".format(error))
 
 
 def main():
