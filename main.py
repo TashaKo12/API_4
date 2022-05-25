@@ -26,10 +26,12 @@ def get_random_path(folders):
 def send_picture(folders, tg_token, chat_id, random_path=None):
     random_path = get_random_path(folders)
     if random_path:
+        with open(random_path, 'rb') as file:
+            photo = file
         updater = Updater(token=tg_token)
         updater.bot.send_photo(
             chat_id=chat_id,
-            photo=open(random_path, 'rb')
+            photo=photo
         )
     else:
         return None
