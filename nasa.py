@@ -44,8 +44,8 @@ def get_epic_images_nasa(folder_epic, api_key):
         "api_key": api_key
     }
     response = requests.get(
-               link_epic.format("api/natural/image"),
-               params = params
+                   link_epic.format("api/natural/image"),
+                   params = params
                )
     
     response.raise_for_status()
