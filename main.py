@@ -16,18 +16,19 @@ FOLDER_NASA = os.environ["FOLDER_NASA"]
 FOLDER_EPIC = os.environ["FOLDER_EPIC"]
 
 
-def random_path(folders):
+def get_random_path(folders):
     random_directory = random.choice(folders)
     random_picture = random.choice(listdir(random_directory))
-    return random_directory, random_picture
+    random_path = f'{random_directory}/{random_picture}'
+    return random_path
 
 
 def send_picture(folders, tg_token, chat_id):
-    random_directory, random_picture = random_path(folders)
+    random_path = get_random_path(folders)
     updater = Updater(token=tg_token)
     updater.bot.send_photo(
         chat_id=chat_id,
-        photo=open(f'{random_directory}/{random_picture}', 'rb')
+        photo=open(random_path, 'rb')
     )
 
 
