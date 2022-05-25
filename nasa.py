@@ -20,25 +20,25 @@ def creating_extension_name_link(link):
     return extension, file_name
 
 
-def get_images_nasa(folder_nasa, api_key):
-    link_nasa = "https://api.nasa.gov/planetary/apod"
+def get_nasa_images(folder_nasa, api_key):
+    nasa_link = "https://api.nasa.gov/planetary/apod"
     count_link = 50
     params = {
         "api_key": api_key,
         "count": count_link
     }
-    response = requests.get(link_nasa, params=params)
+    response = requests.get(nasa_link, params=params)
     response.raise_for_status()
-    images_nasa_data = response.json()
-    for image_nasa_data in images_nasa_data:
+    nasa_images_data = response.json()
+    for image_nasa_data in nasa_images_data:
         if image_nasa_data["url"]:
-            link_nasa = image_nasa_data["url"]
-            extension, file_name = creating_extension_name_link(link_nasa)
+            nasa_link = image_nasa_data["url"]
+            extension, file_name = creating_extension_name_link(nasa_link)
             file_path = f"{folder_nasa}/{file_name}{extension}"
-            download_image(link_nasa, file_path)
+            download_image(nasa_link, file_path)
 
 
-def get_epic_images_nasa(folder_epic, api_key):
+def get_epic_nasa_images(folder_epic, api_key):
     link_epic = "https://api.nasa.gov/EPIC/{}"
     params = {
         "api_key": api_key
@@ -49,11 +49,11 @@ def get_epic_images_nasa(folder_epic, api_key):
                )
     
     response.raise_for_status()
-    images_epic_data = response.json()
+    epic_images_data = response.json()
     
-    for image_epic_data in images_epic_data:
-        filename = image_epic_data["image"]
-        epic_image_data = image_epic_data["date"]
+    for epic_image_data in epic_images_data:
+        filename = epic_image_data["image"]
+        epic_image_data = epic_image_data["date"]
         epic_image_data = datetime.datetime.strptime(epic_image_data, '%Y-%m-%d  %H:%M:%S')
         epic_image_data = epic_image_data.strftime('%Y/%m/%d')
         link_path = f"archive/natural/{epic_image_data}/png/{filename}.png"
@@ -72,8 +72,8 @@ def main():
     pathlib.Path(folder_nasa).mkdir(parents=True, exist_ok=True)
     pathlib.Path(folder_epic).mkdir(parents=True, exist_ok=True)
 
-    get_images_nasa(folder_nasa, api_key)
-    get_epic_images_nasa(folder_epic, api_key)
+    get_nasa_images(folder_nasa, api_key)
+    get_epic_nasa_images(folder_epic, api_key)
 
 
 
