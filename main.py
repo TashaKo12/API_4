@@ -24,7 +24,7 @@ def get_random_path(folders):
 
 
 def send_picture(folders, tg_token, chat_id, random_path=None):
-    random_path = get_random_path(folders)
+    
     if random_path:
         with open(random_path, 'rb') as file:
             photo = file
@@ -34,7 +34,8 @@ def send_picture(folders, tg_token, chat_id, random_path=None):
             photo=photo
         )
     else:
-        return None
+        raise ValueError
+
     
 
 def main():
@@ -47,11 +48,18 @@ def main():
         FOLDER_SPACEX,
         FOLDER_EPIC
     ]
-
     seconds_in_one_day = 86400
-    while True:
-        send_picture(folders, TG_TOKEN, CHAT_ID)
-        sleep(seconds_in_one_day)
+    
+    try:
+        random_path = get_random_path(folders)
+        while True:
+            send_picture(folders, TG_TOKEN, CHAT_ID, random_path)
+            sleep(seconds_in_one_day)       
+    except ValueError as error:
+        print("Can't get data from server:\n{0}".format(error))
+
+    
+
 
 
 if __name__ == "__main__":
