@@ -38,7 +38,7 @@ def get_nasa_images(folder_nasa, api_key):
             download_image(nasa_link, file_path)
 
 
-def get_epic_nasa_images(folder_epic, api_key):
+def get_epic_nasa_apod_images(folder_epic, api_key):
     link_epic = "https://api.nasa.gov/EPIC/{}"
     params = {
         "api_key": api_key
@@ -73,7 +73,7 @@ def main():
     pathlib.Path(folder_epic).mkdir(parents=True, exist_ok=True)
 
     get_nasa_images(folder_nasa, api_key)
-    get_epic_nasa_images(folder_epic, api_key)
+    get_epic_nasa_apod_images(folder_epic, api_key)
 
 
 
