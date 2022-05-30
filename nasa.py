@@ -10,7 +10,7 @@ from download_image import download_image
 
 
 
-def creating_extension_name_link(link):
+def extract_extension_from_link(link):
     link_unquote = unquote(link)
     link_parse =  urlparse(link_unquote)
     path, fullname = os.path.split(link_parse.path)
@@ -33,7 +33,7 @@ def get_nasa_images(folder_nasa, api_key):
     for image_nasa_data in nasa_images_data:
         if image_nasa_data["url"]:
             nasa_link = image_nasa_data["url"]
-            extension, file_name = creating_extension_name_link(nasa_link)
+            extension, file_name = extract_extension_from_link(nasa_link)
             file_path = f"{folder_nasa}/{file_name}{extension}"
             download_image(nasa_link, file_path)
 
