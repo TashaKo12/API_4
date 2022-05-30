@@ -1,5 +1,5 @@
 import os
-import datetime
+from datetime import datetime
 import pathlib
 
 import requests
@@ -54,10 +54,9 @@ def get_epic_nasa_apod_images(folder_epic, api_key):
     
     for epic_image_data in epic_images_data:
         filename = epic_image_data["image"]
-        epic_image_data = epic_image_data["data"]
-        epic_image_data = datetime.datetime.strptime(epic_image_data, '%Y-%m-%d  %H:%M:%S')
-        epic_image_data = epic_image_data.strftime('%Y/%m/%d')
-        link_path = f"archive/natural/{epic_image_data}/png/{filename}.png"
+        epic_image_date = epic_image_data["date"]
+        epic_image_date = datetime.fromisoformat(epic_image_date).strftime("%Y/%m/%d")
+        link_path = f"archive/natural/{epic_image_date}/png/{filename}.png"
         link = link_epic.format(link_path)
         file_path = f"{folder_epic}/{filename}.png"
         download_image(link, file_path, params)
