@@ -54,7 +54,7 @@ def get_epic_nasa_apod_images(folder_epic, api_key):
     
     for epic_image_data in epic_images_data:
         filename = epic_image_data["image"]
-        epic_image_data = epic_image_data["date"]
+        epic_image_data = epic_image_data["data"]
         epic_image_data = datetime.datetime.strptime(epic_image_data, '%Y-%m-%d  %H:%M:%S')
         epic_image_data = epic_image_data.strftime('%Y/%m/%d')
         link_path = f"archive/natural/{epic_image_data}/png/{filename}.png"
