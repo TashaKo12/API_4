@@ -32,6 +32,7 @@ def main():
     folder_spacex = os.environ["FOLDER_SPACEX"]
 
     pathlib.Path(folder_spacex).mkdir(parents=True, exist_ok=True)
+    
     try:
         fetch_spacex_last_launch(folder_spacex)
     except requests.exceptions.HTTPError as error:

@@ -21,42 +21,42 @@ def extract_extension_from_link(link):
 
 
 def get_nasa_images(folder_nasa, api_key):
-    nasa_link = "https://api.nasa.gov/planetary/apod"
-    count_link = 50
+    nasa_link_apod = "https://api.nasa.gov/planetary/apod"
+    links_count = 50
     params = {
         "api_key": api_key,
-        "count": count_link
+        "count": links_count
     }
-    response = requests.get(nasa_link, params=params)
+    response = requests.get(nasa_link_apod, params=params)
     response.raise_for_status()
-    nasa_images_data = response.json()
-    for image_nasa_data in nasa_images_data:
-        if image_nasa_data["url"]:
-            nasa_link = image_nasa_data["url"]
-            extension, file_name = extract_extension_from_link(nasa_link)
+    nasa_images = response.json()
+    for image_nasa in nasa_images:
+        if image_nasa["url"]:
+            nasa_link_image = image_nasa["url"]
+            extension, file_name = extract_extension_from_link(nasa_link_image)
             file_path = f"{folder_nasa}/{file_name}{extension}"
-            download_image(nasa_link, file_path)
+            download_image(nasa_link_image, file_path)
 
 
 def get_epic_nasa_apod_images(folder_epic, api_key):
-    link_epic = "https://api.nasa.gov/EPIC/{}"
+    link_epic = "https://api.nasa.gov/EPIC/api/natural/image"
     params = {
         "api_key": api_key
     }
 
     response = requests.get(
-        link_epic.format("api/natural/image"),
+        link_epic,
         params = params
     )
     
     response.raise_for_status()
-    epic_images_data = response.json()
+    epic_images = response.json()
     
-    for epic_image_data in epic_images_data:
-        filename = epic_image_data["image"]
-        epic_image_date = epic_image_data["date"]
+    for epic_image in epic_images:
+        filename = epic_image["image"]
+        epic_image_date = epic_image["date"]
         epic_image_date = datetime.fromisoformat(epic_image_date).strftime("%Y/%m/%d")
-        link_path = f"archive/natural/{epic_image_date}/png/{filename}.png"
+        link_path = f"https://api.nasa.gov/EPIC/archive/natural/{epic_image_date}/png/{filename}.png"
         link = link_epic.format(link_path)
         file_path = f"{folder_epic}/{filename}.png"
         download_image(link, file_path, params)
